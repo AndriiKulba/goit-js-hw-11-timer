@@ -1,0 +1,116 @@
+/* html, body, .wrapper {
+  height: 100%;
+  width: 100%;
+}
+  body { background: url(../img/bg-tile.png) repeat; }
+
+.wrapper { display: table; }
+
+.cell {
+  display: table-cell;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+  vertical-align: middle;
+}
+
+#holder {
+  width: 603px;
+  height: 383px;
+  margin: auto;
+}
+
+.cntSeparator { display: none; }
+
+.cntDigit {
+  margin-top: 148px !important;
+}
+
+  .cntDigit#cnt_0 { margin-left: 52px; }
+  .cntDigit#cnt_2 { margin-left: 7px; } */
+
+body {
+  text-align: center;
+  background: grey;
+  font-family: sans-serif;
+  font-weight: 100;
+}
+
+.countdown-title {
+  color: #396;
+  font-weight: 100;
+  font-size: 40px;
+  margin: 40px 0px 20px;
+}
+
+.timer {
+  font-family: sans-serif;
+  color: #fff;
+  display: inline-block;
+  font-weight: 100;
+  text-align: center;
+  font-size: 30px;
+}
+
+.field {
+  padding: 10px;
+  border-radius: 3px;
+  background: black;
+  display: inline-block;
+}
+
+.value {
+  padding: 15px;
+  border-radius: 3px;
+  background: black;
+  display: inline-block;
+}
+
+.label {
+  display: block;
+  padding-top: 5px;
+  font-size: 16px;
+}
+
+/* <h1 class="countdown-title">Countdown Clock</h1>
+<div id="countdown" class="countdown">
+  <div class="countdown-number">
+    <span class="days countdown-time"></span>
+    <span class="countdown-text">Days</span>
+  </div>
+  <div class="countdown-number">
+    <span class="hours countdown-time"></span>
+    <span class="countdown-text">Hours</span>
+  </div>
+  <div class="countdown-number">
+    <span class="minutes countdown-time"></span>
+    <span class="countdown-text">Minutes</span>
+  </div>
+  <div class="countdown-number">
+    <span class="seconds countdown-time"></span>
+    <span class="countdown-text">Seconds</span>
+  </div>
+</div> */
+
+/* <body>
+    <div class="timer" id="timer-1">
+      <div class="field">
+        <span class="value" data-value="days">11</span>
+        <span class="label">Days</span>
+      </div>
+
+      <div class="field">
+        <span class="value" data-value="hours">11</span>
+        <span class="label">Hours</span>
+      </div>
+
+      <div class="field">
+        <span class="value" data-value="mins">11</span>
+        <span class="label">Minutes</span>
+      </div>
+
+      <div class="field">
+        <span class="value" data-value="secs">11</span>
+        <span class="label">Seconds</span>
+      </div>
+    </div> */
