@@ -1,56 +1,24 @@
 import './styles.css';
 
-const refs = {
-  valueDays: document.querySelector('span[data-value="days"]'),
-  valueHours: document.querySelector('span[data-value="hours"]'),
-  valueMins: document.querySelector('span[data-value="mins"]'),
-  valueSecs: document.querySelector('span[data-value="secs"]'),
-};
-
-class Timer {
-  constructor({ onTick }) {
+class CountdownTimer {
+  constructor({ targetDate, selector }) {
     this.intervalId = null;
-    this.isActive = false;
-    this.onTick = onTick;
-
-    this.init();
+    this.targetDate = targetDate;
+    // this.selector = selector;
+    // selectorRefs(selector);
   }
 
   init() {
-    const time = this.getTimeComponents(0);
-    this.onTick(time);
-  }
-
-  start() {
-    if (this.isActive) {
-      return;
-    }
-
-    const targetDate = new Date('Jul 17, 2021');
-    this.isActive = true;
-
+    const targetDate = this.targetDate;
     this.intervalId = setInterval(() => {
       const currentTime = Date.now();
       const deltaTime = targetDate - currentTime;
       const time = this.getTimeComponents(deltaTime);
 
-      this.onTick(time);
+      updateClockface(time);
     }, 1000);
   }
 
-  stop() {
-    clearInterval(this.intervalId);
-    this.isActive = false;
-    const time = this.getTimeComponents(0);
-    this.onTick(time);
-  }
-
-  /*
-   * - Принимает время в миллисекундах
-   * - Высчитывает сколько в них вмещается часов/минут/секунд
-   * - Возвращает обьект со свойствами hours, mins, secs
-   * - Адская копипаста со стека 💩
-   */
   getTimeComponents(time) {
     const days = this.pad(Math.floor(time / (1000 * 60 * 60 * 24)));
     const hours = this.pad(
@@ -62,29 +30,36 @@ class Timer {
     return { days, hours, mins, secs };
   }
 
-  /*
-   * Принимает число, приводит к строке и добавляет в начало 0 если число меньше 2-х знаков
-   */
   pad(value) {
     return String(value).padStart(2, '0');
   }
 }
 
-const timer = new Timer({
-  onTick: updateClockface,
-});
+// function selectorRefs(s) {
+//   const valueDays = document.querySelector(`${s} [data-value="days"]`);
+//   const valueHours = document.querySelector(`${s} [data-value="hours"]`);
+//   const valueMins = document.querySelector(`${s} [data-value="mins"]`);
+//   const valueSecs = document.querySelector(`${s} [data-value="secs"]`);
 
-timer.start(timer);
-// refs.stopBtn.addEventListener('click', timer.stop.bind(timer));
+//   return { valueDays, valueHours, valueMins, valueSecs };
+// }
+const refs = {
+  valueDays: document.querySelector('span[data-value="days"]'),
+  valueHours: document.querySelector('span[data-value="hours"]'),
+  valueMins: document.querySelector('span[data-value="mins"]'),
+  valueSecs: document.querySelector('span[data-value="secs"]'),
+};
 
-/*
- * - Принимает время в миллисекундах
- * - Высчитывает сколько в них вмещается часов/минут/секунд
- * - Рисует интерфейс
- */
 function updateClockface({ days, hours, mins, secs }) {
   refs.valueDays.textContent = days;
-  refs.valueHours.textContent = hours;
+  refs.valueHours.innerText = hours;
   refs.valueMins.textContent = mins;
   refs.valueSecs.textContent = secs;
 }
+
+const timer = new CountdownTimer({
+  selector: '#timer-1',
+  targetDate: new Date('Jul 17, 2021'),
+});
+
+timer.init(timer);
