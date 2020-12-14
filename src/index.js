@@ -2,23 +2,35 @@ import './styles.css';
 
 class CountdownTimer {
   constructor({ targetDate, selector }) {
-    this.intervalId = null;
+    // this.intervalId = null;
     this.targetDate = targetDate;
     // this.selector = selector;
     // selectorRefs(selector);
   }
-
-  init() {
+  getDataInit() {
+    console.log(this.targetDate);
     const targetDate = this.targetDate;
-    this.intervalId = setInterval(() => {
-      const currentTime = Date.now();
-      const deltaTime = targetDate - currentTime;
-      const time = this.getTimeComponents(deltaTime);
-
-      updateClockface(time);
-    }, 1000);
+    const currentTime = Date.now();
+    const deltaTime = targetDate - currentTime;
+    const time = this.getTimeComponents(deltaTime);
+    console.log(targetDate);
+    updateClockface(time);
   }
 
+  init() {
+    updateClockface(this.getDataInit());
+
+    setInterval(() => {
+      updateClockface(this.getDataInit());
+    }, 1000);
+  }
+  getDataInit() {
+    const targetDate = this.targetDate;
+    const currentTime = Date.now();
+    const deltaTime = targetDate - currentTime;
+    const time = this.getTimeComponents(deltaTime);
+    return time;
+  }
   getTimeComponents(time) {
     const days = this.pad(Math.floor(time / (1000 * 60 * 60 * 24)));
     const hours = this.pad(
@@ -63,4 +75,4 @@ const timer = new CountdownTimer({
   targetDate: new Date('Jul 17, 2021'),
 });
 
-timer.init(timer);
+timer.init();
